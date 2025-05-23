@@ -1,0 +1,15 @@
+[submodule "Externals/GLFW"]
+	path = Externals/GLFW
+	url = https://github.com/glfw/glfw.git
+[submodule "Externals/glm"]
+	path = Externals/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "Externals/spdlog"]
+	path = Externals/spdlog
+	url = https://github.com/gabime/spdlog.git
+[submodule "Externals/ImGui"]
+	path = Externals/ImGui
+	url = https://github.com/ocornut/imgui.git
+[submodule "Externals/ImGuizmo"]
+	path = Externals/ImGuizmo
+	url = https://github.com/CedricGuillemet/ImGuizmo.git

@@ -1,0 +1,13 @@
+#Dir
+.vs/
+bin/
+bin-int/
+
+#files
+*.user
+*.filters
+*.vcxproj
+*.sln
+*.log
+*.ini
+.clang-format
