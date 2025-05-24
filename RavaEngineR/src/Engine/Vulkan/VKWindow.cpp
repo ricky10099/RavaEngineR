@@ -6,8 +6,11 @@
 #include "Engine/Vulkan/VKContext.h"
 
 namespace VK {
-Window::Window(std::string_view title)
-	: _title(title) {
+Window::Window(std::string_view title, bool isFullScreen, u32 width, u32 height)
+	: _title(title)
+	, _isFullscreen(isFullScreen)
+	, _width(width)
+	, _height(height) {
 	InitWindow();
 
 	Context::Instance = std::make_unique<Context>(this);
@@ -27,13 +30,16 @@ void Window::InitWindow() {
 	GLFWmonitor* primaryMonitor  = glfwGetPrimaryMonitor();
 	const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);
 
-	int monitorX, monitorY;
-	glfwGetMonitorPos(primaryMonitor, &monitorX, &monitorY);
+	if (_isFullscreen) {
+		_window = glfwCreateWindow(videoMode->width, videoMode->height, _title.data(), primaryMonitor, nullptr);
 
-	_window = glfwCreateWindow(_width, _height, _title.data(), nullptr, nullptr);
-	glfwSetWindowPos(_window, monitorX + (videoMode->width - _width) / 2, monitorY + (videoMode->height - _height) / 2);
-
-	glfwShowWindow(_window);
+	} else {
+		int monitorX, monitorY;
+		glfwGetMonitorPos(primaryMonitor, &monitorX, &monitorY);
+		_window = glfwCreateWindow(_width, _height, _title.data(), nullptr, nullptr);
+		glfwSetWindowPos(_window, monitorX + (videoMode->width - _width) / 2, monitorY + (videoMode->height - _height) / 2);
+		glfwShowWindow(_window);
+	}
 
 	if (!glfwVulkanSupported()) {
 		ENGINE_CRITICAL("GLFW: Vulkan not supported!");
@@ -52,7 +58,7 @@ void Window::InitWindow() {
 	glfwSetFramebufferSizeCallback(_window, FramebufferResizeCallback);
 }
 
-void Window::FramebufferResizeCallback(GLFWwindow* glfwWindow, int width, int height) {
+void Window::FramebufferResizeCallback(GLFWwindow* glfwWindow, i32 width, i32 height) {
 	auto window      = static_cast<Window*>(glfwGetWindowUserPointer(glfwWindow));
 	window->_resized = true;
 	window->_width   = width;

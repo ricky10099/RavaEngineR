@@ -36,6 +36,7 @@ class Context {
 	VkQueue GetPresentQueue() const { return _presentQueue; }
 	QueueFamilyIndices& GetPhysicalQueueFamilies() { return _queueFamilyIndices; }
 	SwapChainSupportDetails GetSwapChainSupport() { return QuerySwapChainSupport(_physicalDevice); }
+	const VkPhysicalDeviceProperties& GetProperties() { return _properties; }
 
    private:
 	Window* _window;

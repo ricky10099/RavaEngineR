@@ -2,6 +2,7 @@
 
 #include "Engine/Engine.h"
 #include "Engine/System/Window.h"
+#include "Engine/System/Renderer.h"
 
 namespace RV {
 Engine* Engine::Instance = nullptr;

@@ -10,6 +10,36 @@ static constexpr int MAX_FRAMES_SYNC = 2;
 
 const std::vector<const char*> DEVICE_EXTENSIONS = {VK_KHR_SWAPCHAIN_EXTENSION_NAME, VK_KHR_MAINTENANCE1_EXTENSION_NAME};
 
+struct PointLight {
+	glm::vec4 position{};  // ignore w
+	glm::vec4 color{};     // w is intensity
+};
+
+struct DirectionalLight {
+	glm::vec4 direction{};  // ignore w
+	glm::vec4 color{};      // w is intensity
+};
+
+struct GlobalUbo {
+	glm::mat4 projection{1.f};
+	glm::mat4 view{1.f};
+	glm::mat4 inverseView{1.f};
+	glm::vec4 ambientLightColor{1.f, 1.f, 1.f, 0.02f};  // w is intensity
+	PointLight pointLights[128];
+	DirectionalLight directionalLight;
+	int numPointLights;
+	float gamma;
+	float exposure;
+};
+
+
+struct FrameInfo {
+	int FrameIndex;
+	float FrameTime;
+	VkCommandBuffer CommandBuffer;
+	VkDescriptorSet GlobalDescriptorSet;
+};
+
 //////////////////////////////////////////////////////////////////////////
 // Vulkan validation
 //////////////////////////////////////////////////////////////////////////
@@ -49,9 +79,9 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL DebugCallback(
 		case VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT:
 			ENGINE_INFO(pCallbackData->pMessage);
 			return VK_FALSE;
-		//case VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT:
-		//	ENGINE_TRACE(pCallbackData->pMessage);
-		//	return VK_FALSE;
+		case VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT:
+			ENGINE_TRACE(pCallbackData->pMessage);
+			return VK_FALSE;
 		default:
 			return VK_FALSE;
 	}

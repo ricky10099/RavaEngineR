@@ -9,9 +9,9 @@ class RendererAPI {
 	};
 
    public:
-	static APIs GetAPI() { return s_api; }
+	static APIs GetAPI() { return _api; }
 
    private:
-	static APIs s_api;
+	static APIs _api;
 };
 }  // namespace RV
