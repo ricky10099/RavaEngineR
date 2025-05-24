@@ -2,6 +2,7 @@
 
 namespace RV {
 class Window;
+class Renderer;
 class Engine {
    public:
 	static Engine* Instance;

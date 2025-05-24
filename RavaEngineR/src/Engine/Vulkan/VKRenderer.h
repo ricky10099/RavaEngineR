@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Engine/System/Renderer.h"
+#include "Engine/Vulkan/VKUtils.h"
+#include "Engine/Vulkan/VKSwapchain.h"
+#include "Engine/Vulkan/VKBuffer.h"
 
 namespace VK {
 class Window;
@@ -11,20 +14,22 @@ class DescriptorPool;
 class Renderer : public RV::Renderer {
    public:
 	static Unique<DescriptorPool> GlobalDescriptorPool;
+
    public:
 	Renderer(Window* window);
-	virtual ~Renderer() override = default;
+	virtual ~Renderer() override;
 
 	NO_COPY(Renderer)
 
 	void Init();
-	void BeginFrame();
+	virtual void BeginFrame() override;
 	void EndFrame();
 	void Begin3DRenderPass();
 	void BeginGUIRenderPass();
 	void EndRenderPass();
-	void RenderpassGUI(/*Camera* camera*/);
-	void EndScene();
+	virtual void RenderpassEntities(/*entt::registry& registry, Rava::Camera& camera*/) override;
+	virtual void RenderpassGUI(/*Camera* camera*/) override;
+	virtual void EndScene() override;
 
 	int GetFrameIndex() const;
 	VkCommandBuffer GetCurrentCommandBuffer() const;
@@ -47,13 +52,13 @@ class Renderer : public RV::Renderer {
 	std::vector<VkDescriptorSet> _globalDescriptorSets{MAX_FRAMES_SYNC};
 	std::vector<Unique<Buffer>> _uniformBuffers{MAX_FRAMES_SYNC};
 
-	u32 _frameCounter = 0;
+	u32 _frameCounter      = 0;
 	u32 _currentImageIndex = 0;
 	i32 _currentFrameIndex = 0;
-	bool _frameInProgress = false;
-	FrameInfo m_frameInfo{};
+	bool _frameInProgress  = false;
+	FrameInfo _frameInfo{};
 
-	private:
+   private:
 	void CreateCommandBuffers();
 	void FreeCommandBuffers();
 	void RecreateSwapChain();

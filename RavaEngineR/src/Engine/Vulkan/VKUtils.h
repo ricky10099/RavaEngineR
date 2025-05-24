@@ -32,7 +32,6 @@ struct GlobalUbo {
 	float exposure;
 };
 
-
 struct FrameInfo {
 	int FrameIndex;
 	float FrameTime;

@@ -1,12 +1,13 @@
 #include "rvpch.h"
 
+#include "Engine/Engine.h"
 #include "Engine/Vulkan/VKRenderer.h"
-#include "Engine/Vulkan/VKUtils.h"
-#include "Engine/Vulkan/VKSwapchain.h"
+//#include "Engine/Vulkan/VKUtils.h"
+//#include "Engine/Vulkan/VKSwapchain.h"
 #include "Engine/Vulkan/VKDescriptor.h"
 #include "Engine/Vulkan/VKWindow.h"
 #include "Engine/Vulkan/VKRenderPass.h"
-#include "Engine/Engine.h"
+//#include "Engine/Vulkan/VKBuffer.h"
 
 // std::shared_ptr<VK::Texture> DefaultTexture;
 // std::shared_ptr<VK::Buffer> DummyBuffer;
@@ -15,7 +16,7 @@ namespace VK {
 Unique<DescriptorPool> Renderer::GlobalDescriptorPool;
 Renderer::Renderer(Window* window)
 	: _window{window} {
-	// Init();
+	Init();
 }
 
 Renderer::~Renderer() {
@@ -200,7 +201,7 @@ void Renderer::BeginFrame() {
 	_currentCommandBuffer = commandBuffer;
 	// return commandBuffer;
 	if (_currentCommandBuffer) {
-		m_frameInfo = {
+		_frameInfo = {
 			_currentFrameIndex,
 			0.0f, /* m_FrameTime */
 			_currentCommandBuffer,
@@ -225,36 +226,36 @@ void Renderer::BeginFrame() {
 //	}
 // }
 //
-// void Renderer::RenderpassEntities(entt::registry& registry, Rava::Camera& currentCamera) {
-//	if (_currentCommandBuffer) {
-//		GlobalUbo ubo{};
-//		ubo.projection  = currentCamera.GetProjection();
-//		ubo.view        = currentCamera.GetView();
-//		ubo.inverseView = currentCamera.GetInverseView();
-//		ubo.gamma       = Rava::Engine::s_Instance->GetGamma();
-//		ubo.exposure    = Rava::Engine::s_Instance->GetExposure();
-//		// ubo.Projection        = m_frameInfo.m_Camera->GetProjectionMatrix();
-//		// ubo.View              = m_frameInfo.m_Camera->GetViewMatrix();
-//		// ubo.AmbientLightColor = {1.0f, 1.0f, 1.0f, m_AmbientLightIntensity};
-//		// m_LightSystem->Update(m_FrameInfo, ubo, registry);
-//		// m_UniformBuffers[m_CurrentFrameIndex]->WriteToBuffer(&ubo);
-//		// m_UniformBuffers[m_CurrentFrameIndex]->Flush();
-//
-//		// for (auto [entity, cam] : registry.view<Rava::Component::Camera>().each()) {
-//		//	if (cam.currentCamera) {
-//		//		ubo.projection  = cam.view.GetProjection();
-//		//		ubo.view        = cam.view.GetView();
-//		//		ubo.inverseView = cam.view.GetInverseView();
-//		//	}
-//		// }
-//		m_pointLightRenderSystem->Update(m_frameInfo, ubo, registry);
-//		_uniformBuffers[_currentFrameIndex]->WriteToBuffer(&ubo);
-//		_uniformBuffers[_currentFrameIndex]->Flush();
-//
-//		Begin3DRenderPass(/*_currentCommandBuffer*/);
-//		// BeginGUIRenderPass();
-//	}
-// }
+ void Renderer::RenderpassEntities(/*entt::registry& registry, Rava::Camera& currentCamera*/) {
+	if (_currentCommandBuffer) {
+		//GlobalUbo ubo{};
+		//ubo.projection  = currentCamera.GetProjection();
+		//ubo.view        = currentCamera.GetView();
+		//ubo.inverseView = currentCamera.GetInverseView();
+		//ubo.gamma       = Rava::Engine::s_Instance->GetGamma();
+		//ubo.exposure    = Rava::Engine::s_Instance->GetExposure();
+		//// ubo.Projection        = m_frameInfo.m_Camera->GetProjectionMatrix();
+		//// ubo.View              = m_frameInfo.m_Camera->GetViewMatrix();
+		//// ubo.AmbientLightColor = {1.0f, 1.0f, 1.0f, m_AmbientLightIntensity};
+		//// m_LightSystem->Update(m_FrameInfo, ubo, registry);
+		//// m_UniformBuffers[m_CurrentFrameIndex]->WriteToBuffer(&ubo);
+		//// m_UniformBuffers[m_CurrentFrameIndex]->Flush();
+
+		//// for (auto [entity, cam] : registry.view<Rava::Component::Camera>().each()) {
+		////	if (cam.currentCamera) {
+		////		ubo.projection  = cam.view.GetProjection();
+		////		ubo.view        = cam.view.GetView();
+		////		ubo.inverseView = cam.view.GetInverseView();
+		////	}
+		//// }
+		//m_pointLightRenderSystem->Update(m_frameInfo, ubo, registry);
+		//_uniformBuffers[_currentFrameIndex]->WriteToBuffer(&ubo);
+		//_uniformBuffers[_currentFrameIndex]->Flush();
+
+		Begin3DRenderPass(/*_currentCommandBuffer*/);
+		// BeginGUIRenderPass();
+	}
+ }
 
 void Renderer::RenderpassGUI() {
 	if (_currentCommandBuffer) {

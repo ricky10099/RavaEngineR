@@ -168,8 +168,6 @@ VkExtent2D Swapchain::ChooseExtent(const VkSurfaceCapabilitiesKHR& capabilities)
 }
 
 VkResult Swapchain::AcquireNextImage(u32* imageIndex) {
-	// -- GET NEXT IMAGE --
-	// Wait for given fence to signal (open) from last draw before continuing
 	vkWaitForFences(
 		Context::Instance->GetLogicalDevice(), 1, &_renderFences[_currentFrame], VK_TRUE, std::numeric_limits<u64>::max()
 	);
@@ -178,7 +176,7 @@ VkResult Swapchain::AcquireNextImage(u32* imageIndex) {
 		Context::Instance->GetLogicalDevice(),
 		_swapchain,
 		std::numeric_limits<u64>::max(),
-		_availableSemaphores[_currentFrame],  // must be a not signaled semaphore
+		_availableSemaphores[_currentFrame],
 		VK_NULL_HANDLE,
 		imageIndex
 	);

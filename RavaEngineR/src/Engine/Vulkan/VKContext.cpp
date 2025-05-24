@@ -40,7 +40,7 @@ void Context::CreateInstance() {
 	appInfo.sType              = VK_STRUCTURE_TYPE_APPLICATION_INFO;
 	appInfo.pApplicationName   = "Rava Engine R";
 	appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
-	appInfo.pEngineName        = "Rava Engine";
+	appInfo.pEngineName        = "Rava Engine R";
 	appInfo.engineVersion      = VK_MAKE_VERSION(1, 0, 0);
 	appInfo.apiVersion         = VK_API_VERSION_1_4;
 
