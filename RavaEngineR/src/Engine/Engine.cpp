@@ -1,8 +1,9 @@
 #include "rvpch.h"
 
 #include "Engine/Engine.h"
-#include "Engine/System/Window.h"
-#include "Engine/System/Renderer.h"
+#include "Engine/Rendering/Generic/Window.h"
+#include "Engine/Rendering/Generic/Renderer.h"
+#include "Engine/System/Camera.h"
 
 namespace RV {
 Engine* Engine::Instance = nullptr;

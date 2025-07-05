@@ -1,7 +1,7 @@
 #include "rvpch.h"
 
-#include "Engine/Vulkan/VKBuffer.h"
-#include "Engine/Vulkan/VKUtils.h"
+#include "Engine/Rendering/Vulkan/VKBuffer.h"
+#include "Engine/Rendering/Vulkan/VKUtils.h"
 
 namespace VK {
 VkDeviceSize Buffer::GetAlignment(VkDeviceSize instanceSize, VkDeviceSize minOffsetAlignment) {

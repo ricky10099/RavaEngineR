@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Engine/System/Buffer.h"
+#include "Engine/Rendering/Generic/Buffer.h"
 
 namespace VK {
 class Buffer : public RV::Buffer {
@@ -23,9 +23,9 @@ class Buffer : public RV::Buffer {
 	virtual void MapBuffer() override;
 	void Unmap();
 
-	void WriteToBuffer(const void* data, VkDeviceSize size = VK_WHOLE_SIZE, VkDeviceSize offset = 0);
+	void WriteToBuffer(const void* data, VkDeviceSize size, VkDeviceSize offset);
 	virtual void WriteToBuffer(const void* data) override { WriteToBuffer(data, VK_WHOLE_SIZE, 0); }
-	VkResult Flush(VkDeviceSize size = VK_WHOLE_SIZE, VkDeviceSize offset = 0);
+	VkResult Flush(VkDeviceSize size, VkDeviceSize offset);
 	virtual bool Flush() override {
 		auto result = Flush(VK_WHOLE_SIZE, 0);
 		return result == VK_SUCCESS;

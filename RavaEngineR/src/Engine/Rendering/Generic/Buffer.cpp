@@ -1,9 +1,9 @@
 #include "rvpch.h"
 
-#include "Engine/System/Buffer.h"
-#include "Engine/System/RendererAPI.h"
+#include "Engine/Rendering/Generic/Buffer.h"
+#include "Engine/Rendering/Generic/RendererAPI.h"
 
-#include "Engine/Vulkan/VKBuffer.h"
+#include "Engine/Rendering/Vulkan/VKBuffer.h"
 
 namespace RV {
 	Shared<Buffer> Buffer::Create(u32 size, BufferUsage bufferUsage) {

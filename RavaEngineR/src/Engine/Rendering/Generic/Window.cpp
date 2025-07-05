@@ -1,10 +1,10 @@
 #include "rvpch.h"
 
 #include "Engine/Engine.h"
-#include "Engine/System/Window.h"
-#include "Engine/System/RendererAPI.h"
+#include "Engine/Rendering/Generic/Window.h"
+#include "Engine/Rendering/Generic/RendererAPI.h"
 
-#include "Engine/Vulkan/VKWindow.h"
+#include "Engine/Rendering/Vulkan/VKWindow.h"
 
 namespace RV {
 

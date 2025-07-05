@@ -1,7 +1,7 @@
 #include "rvpch.h"
 
-#include "Engine/Vulkan/VKDescriptor.h"
-#include "Engine/Vulkan/VKUtils.h"
+#include "Engine/Rendering/Vulkan/VKDescriptor.h"
+#include "Engine/Rendering/Vulkan/VKUtils.h"
 
 namespace VK {
 // *************** Descriptor Set Layout Builder *********************

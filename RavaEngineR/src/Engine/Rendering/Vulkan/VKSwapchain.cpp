@@ -1,7 +1,7 @@
 #include "rvpch.h"
 
-#include "Engine/Vulkan/VKSwapchain.h"
-#include "Engine/Vulkan/VKUtils.h"
+#include "Engine/Rendering/Vulkan/VKSwapchain.h"
+#include "Engine/Rendering/Vulkan/VKUtils.h"
 
 namespace VK {
 Swapchain::Swapchain(VkExtent2D extent)
