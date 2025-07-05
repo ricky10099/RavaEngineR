@@ -20,6 +20,7 @@ Renderer::Renderer(Window* window)
 }
 
 Renderer::~Renderer() {
+	vkDeviceWaitIdle(Context::Instance->GetLogicalDevice());	
 	FreeCommandBuffers();
 }
 

@@ -19,7 +19,6 @@ Context::Context(Window* window)
 }
 
 Context::~Context() {
-	vkDeviceWaitIdle(_device);
 	vkDestroyCommandPool(_device, _commandPool, nullptr);
 	vkDestroyDevice(_device, nullptr);
 
